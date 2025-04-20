@@ -15,7 +15,7 @@ export default {
     	extend: {
     		fontFamily: {
     			sans: [
-    				'Figtree',
+    				'Roboto',
                     ...defaultTheme.fontFamily.sans
                 ]
     		},
@@ -101,5 +101,10 @@ export default {
     	}
     },
 
-    plugins: [forms, require("tailwindcss-animate")],
+    plugins: [
+        forms,
+        require("tailwindcss-animate"),
+        require('tailwindcss/typography'),
+
+    ],
 };
