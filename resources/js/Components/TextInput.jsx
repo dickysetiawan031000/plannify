@@ -17,14 +17,16 @@ export default forwardRef(function TextInput(
     }, [isFocused]);
 
     return (
-        <input
-            {...props}
-            type={type}
-            className={
-                'rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ' +
-                className
-            }
-            ref={localRef}
-        />
+        <div className={'mt-2'}>
+            <input
+                {...props}
+                type={type}
+                className={
+                    'block w-full rounded-md border border-input bg-background p-2 text-foreground shadow-sm outline-none placeholder:text-muted-foreground focus:ring-red-500 sm:text-sm sm:leading-6 ' +
+                    className
+                }
+                ref={localRef}
+            />
+        </div>
     );
 });
