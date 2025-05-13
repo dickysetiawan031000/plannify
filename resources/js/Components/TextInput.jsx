@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
 export default forwardRef(function TextInput(
-    { type = 'text', className = '', isFocused = false, ...props },
+    { type = 'text', className = '', isFocused = false, onErrors, ...props },
     ref,
 ) {
     const localRef = useRef(null);
@@ -27,6 +27,7 @@ export default forwardRef(function TextInput(
                 }
                 ref={localRef}
             />
+            {onErrors}
         </div>
     );
 });
