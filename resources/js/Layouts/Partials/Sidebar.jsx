@@ -2,7 +2,8 @@ import { PiHouse, PiLockKeyOpen, PiPlus, PiSidebar, PiSquaresFour, PiUser, PiX }
 import { Link } from "@inertiajs/react";
 import { Avatar, AvatarFallback } from "@/Components/ui/avatar.jsx";
 
-export default function Sidebar(){
+export default function Sidebar({auth}){
+    console.log(auth)
     return (
         <nav className="flex flex-col flex-1">
             <ul role="list" className="flex flex-col flex-1 gap-y-7">
@@ -78,7 +79,7 @@ export default function Sidebar(){
                         <Avatar>
                             <AvatarFallback>X</AvatarFallback>
                         </Avatar>
-                        <span>Dicky Setiawan</span>
+                        <span>{auth.user.name}</span>
 
                     </Link>
                 </li>

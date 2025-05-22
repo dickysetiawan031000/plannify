@@ -1,7 +1,7 @@
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSidebar, PiSquaresFour, PiUser, PiX } from 'react-icons/pi';
 import { Link } from "@inertiajs/react";
 
-export default function SidebarResponsive() {
+export default function SidebarResponsive({auth}) {
     return (
         <div className="flex flex-col px-6 pb-2 overflow-y-auto bg-white dark:bg-gray-900 grow gap-y-5">
             <div className="flex h-16 shrink-0 items-center space-x-1.5">
