@@ -1,8 +1,9 @@
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSidebar, PiSquaresFour, PiUser, PiX } from 'react-icons/pi';
 import { Link } from "@inertiajs/react";
 import { Avatar, AvatarFallback } from "@/Components/ui/avatar.jsx";
+import { cn } from "@/lib/utils.js";
 
-export default function Sidebar({auth}){
+export default function Sidebar({auth, url}){
     console.log(auth)
     return (
         <nav className="flex flex-col flex-1">
@@ -12,37 +13,61 @@ export default function Sidebar({auth}){
                         {/* menu */}
                         <li>
                             <Link
-                                href={'#'}
-                                className={'flex p-3 text-sm font-semibold leading-relaxed tracking-tighter rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                href={route('dashboard')}
+                                className={cn(
+                                    url.startsWith('/dashboard') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                    'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                )}
                             >
-                                <PiHouse className={'w-6 h-6 text-foreground shrink-0'} />
+                                <PiHouse className={cn(
+                                    url.startsWith('/dashboard') ? 'text-white' : 'text-foreground',
+                                    'h-6 w-6 shrink-0'
+                                )} />
                                 Dashboard
                             </Link>
                         </li>
                         <li>
                             <Link
                                 href={'#'}
-                                className={'flex p-3 text-sm font-semibold leading-relaxed tracking-tighter rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                className={cn(
+                                    url.startsWith('/user') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                    'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                )}
                             >
-                                <PiUser className={'w-6 h-6 text-foreground shrink-0'} />
+                                <PiUser  className={cn(
+                                    url.startsWith('/user') ? 'text-white' : 'text-foreground',
+                                    'h-6 w-6 shrink-0'
+                                )}/>
                                 People
                             </Link>
                         </li>
                         <li>
                             <Link
                                 href={'#'}
-                                className={'flex p-3 text-sm font-semibold leading-relaxed tracking-tighter rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                className={cn(
+                                    url.startsWith('/my-tasks') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                    'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                )}
                             >
-                                <PiSquaresFour className={'w-6 h-6 text-foreground shrink-0'} />
+                                <PiSquaresFour  className={cn(
+                                    url.startsWith('/my-tasks') ? 'text-white' : 'text-foreground',
+                                    'h-6 w-6 shrink-0'
+                                )} />
                                 My Tasks
                             </Link>
                         </li>
                         <li>
                             <Link
                                 href={'#'}
-                                className={'flex p-3 text-sm font-semibold leading-relaxed tracking-tighter rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                className={cn(
+                                    url.startsWith('/logout') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                    'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                )}
                             >
-                                <PiLockKeyOpen className={'w-6 h-6 text-foreground shrink-0'} />
+                                <PiLockKeyOpen  className={cn(
+                                    url.startsWith('/logout') ? 'text-white' : 'text-foreground',
+                                    'h-6 w-6 shrink-0'
+                                )} />
                                 Logout
                             </Link>
                         </li>
@@ -79,7 +104,7 @@ export default function Sidebar({auth}){
                         <Avatar>
                             <AvatarFallback>X</AvatarFallback>
                         </Avatar>
-                        <span>{auth.user.name}</span>
+                        <span>{auth.name}</span>
 
                     </Link>
                 </li>

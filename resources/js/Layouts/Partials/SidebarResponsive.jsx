@@ -1,7 +1,8 @@
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSidebar, PiSquaresFour, PiUser, PiX } from 'react-icons/pi';
 import { Link } from "@inertiajs/react";
+import { cn } from "@/lib/utils.js";
 
-export default function SidebarResponsive({auth}) {
+export default function SidebarResponsive({auth, url}) {
     return (
         <div className="flex flex-col px-6 pb-2 overflow-y-auto bg-white dark:bg-gray-900 grow gap-y-5">
             <div className="flex h-16 shrink-0 items-center space-x-1.5">
@@ -20,9 +21,15 @@ export default function SidebarResponsive({auth}) {
                             <li>
                                 <Link
                                     href={'#'}
-                                    className={'flex p-3 text-sm font-semibold leading-relaxed rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                    className={cn(
+                                        url.startsWith('/dashboard') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                        'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                    )}
                                 >
-                                    <PiHouse className={'w-6 h-6 shrink-0 text-foreground'} />
+                                    <PiHouse className={cn(
+                                        url.startsWith('/dashboard') ? 'text-white' : 'text-foreground',
+                                        'h-6 w-6 shrink-0'
+                                    )} />
                                     Dashboard
 
                                 </Link>
@@ -30,9 +37,15 @@ export default function SidebarResponsive({auth}) {
                             <li>
                                 <Link
                                     href={'#'}
-                                    className={'flex p-3 text-sm font-semibold leading-relaxed rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                    className={cn(
+                                        url.startsWith('/users') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                        'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                    )}
                                 >
-                                    <PiUser className={'w-6 h-6 shrink-0 text-foreground'} />
+                                    <PiUser className={cn(
+                                        url.startsWith('/users') ? 'text-white' : 'text-foreground',
+                                        'h-6 w-6 shrink-0'
+                                    )} />
                                     People
 
                                 </Link>
@@ -40,9 +53,15 @@ export default function SidebarResponsive({auth}) {
                             <li>
                                 <Link
                                     href={'#'}
-                                    className={'flex p-3 text-sm font-semibold leading-relaxed rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                    className={cn(
+                                        url.startsWith('/my-tasks') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                        'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                    )}
                                 >
-                                    <PiSquaresFour className={'w-6 h-6 shrink-0 text-foreground'} />
+                                    <PiSquaresFour className={cn(
+                                        url.startsWith('/my-tasks') ? 'text-white' : 'text-foreground',
+                                        'h-6 w-6 shrink-0'
+                                    )} />
                                     My Task
 
                                 </Link>
@@ -50,9 +69,15 @@ export default function SidebarResponsive({auth}) {
                             <li>
                                 <Link
                                     href={'#'}
-                                    className={'flex p-3 text-sm font-semibold leading-relaxed rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                    className={cn(
+                                        url.startsWith('/logout') ? 'bg-red-500 text-white' : 'text-foreground hover:bg-gray-100',
+                                        'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                    )}
                                 >
-                                    <PiLockKeyOpen className={'w-6 h-6 shrink-0 text-foreground'} />
+                                    <PiLockKeyOpen className={cn(
+                                        url.startsWith('/logout') ? 'text-white' : 'text-foreground',
+                                        'h-6 w-6 shrink-0'
+                                    )} />
                                     Logout
 
                                 </Link>
