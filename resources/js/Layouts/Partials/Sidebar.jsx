@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback } from "@/Components/ui/avatar.jsx";
 import { cn } from "@/lib/utils.js";
 
 export default function Sidebar({auth, url, workspaces}){
-    console.log(auth)
     return (
         <nav className="flex flex-col flex-1">
             <ul role="list" className="flex flex-col flex-1 gap-y-7">
