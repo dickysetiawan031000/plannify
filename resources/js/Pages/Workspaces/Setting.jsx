@@ -18,6 +18,7 @@ export default function Setting({...props}){
                 <HeaderForm title={'Members'} subtitle={'Please add members to the card'} />
                 <MemberWorkspace
                     action={route('workspaces.member_store', [workspace])}
+                    members={workspace.members}
                 />
             </div>
         </div>

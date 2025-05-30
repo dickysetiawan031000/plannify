@@ -8,8 +8,9 @@ import { useForm } from "@inertiajs/react";
 import { flashMessage } from "@/lib/utils.js";
 import { toast } from "sonner";
 import { Transition } from "@headlessui/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar.jsx";
 
-export default function MemberWorkspace({action}) {
+export default function MemberWorkspace({action, members}) {
 
     const {data, setData, post, processing, errors, reset, recentlySuccessful} = useForm({
         email: '',
@@ -67,6 +68,35 @@ export default function MemberWorkspace({action}) {
                         </Transition>
                     </div>
                 </form>
+                <div className={'py-6 space-y-4'}>
+                    <ul role={'list'} className={'border border-gray-200 divide-y divide-gray-100 rounded-md'}>
+                        {members.map((member, index) => (
+                            <li
+                                className={'flex justify-between py-4 pl-4 pr-5 text-sm leading-relaxed items-center'}
+                                key={index}
+                            >
+                                <div className={'flex items-center flex-1 w-0'}>
+                                    <Avatar>
+                                        <AvatarImage src={member.user.avatar} />
+                                        <AvatarFallback>{member.user.name.substring(0,1)}</AvatarFallback>
+                                    </Avatar>
+                                    <div className={'flex flex-col min-w-0 ml-4'}>
+                                        <span className={'font-medium truncate'}>{member.user.name}</span>
+                                        <span className={'hidden text-muted-foreground sm:block'}>{member.user.email}</span>
+                                    </div>
+                                </div>
+                                <div className={'flex-shrink-0 ml-4'}>
+                                    <Button
+                                        variant={'link'}
+                                        className={'font-medium text-red-500 hover:text-red-600 hover:no-underline'}
+                                    >
+                                        Delete
+                                    </Button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </CardContent>
         </Card>
     )

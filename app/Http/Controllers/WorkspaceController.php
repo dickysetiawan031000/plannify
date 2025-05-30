@@ -59,7 +59,7 @@ class WorkspaceController extends Controller
     public function edit(Workspace $workspace): Response
     {
         return inertia(component: 'Workspaces/Setting', props: [
-            'workspace' => fn() => new WorkspaceResource($workspace),
+            'workspace' => fn() => new WorkspaceResource($workspace->load('members')),
             'page_settings' => [
                 'title' => 'Edit Workspace',
                 'subtitle' => 'Update the workspace details below.',
