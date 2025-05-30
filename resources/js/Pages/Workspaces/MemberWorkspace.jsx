@@ -4,7 +4,7 @@ import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/Components/ui/select.jsx";
 import { Button } from "@/Components/ui/button.jsx";
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { flashMessage } from "@/lib/utils.js";
 import { toast } from "sonner";
 import { Transition } from "@headlessui/react";
@@ -86,12 +86,30 @@ export default function MemberWorkspace({action, members}) {
                                     </div>
                                 </div>
                                 <div className={'flex-shrink-0 ml-4'}>
-                                    <Button
-                                        variant={'link'}
-                                        className={'font-medium text-red-500 hover:text-red-600 hover:no-underline'}
-                                    >
-                                        Delete
-                                    </Button>
+                                    {member.role !== 'Owner' ? (
+                                        <Button
+                                            variant={'link'}
+                                            className={'font-medium text-red-500 hover:text-red-600 hover:no-underline'}
+                                            onClick={() =>
+                                                router.delete(
+                                                    route('workspaces.member_destroy',{
+                                                        workspace: member.memberable_id,
+                                                        member: member.id
+                                                    }),
+                                                    {
+                                                        preserveScroll: true,
+                                                        preserveState: true,
+                                                        onSuccess: (success) => {
+                                                            const flash = flashMessage(success);
+                                                            if(flash) toast[flash.type](flash.message);
+                                                        }
+                                                    }
+                                                )
+                                            }
+                                        >
+                                            Delete
+                                        </Button>
+                                    ) : member.role}
                                 </div>
                             </li>
                         ))}
