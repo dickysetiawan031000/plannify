@@ -90,13 +90,23 @@ export default function Sidebar({auth, url, workspaces}){
                         {workspaces.map((workspaces, index) => (
                             <li key={index}>
                                 <Link
-                                    href={route('workspaces.show', [workspaces])}
-                                    className={'flex w-full p-3 text-sm font-semibold leading-relaxed rounded-md text-foreground hover:bg-gray-100 group gap-x-3'}
+                                    href={route('workspaces.show', [workspaces.memberable.slug])}
+                                    className={cn(
+                                        route().current('workspace.show', [workspaces.memberable.slug])
+                                            ? 'bg-red-500 text-white'
+                                            : 'text-foreground hover:bg-gray-100',
+                                            'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed'
+                                    )}
                                 >
-                                    <span className={'border-foreground text-foreground uppercase flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium'}>
-                                        {workspaces.name.substring(0, 1)}
+                                    <span className={cn(
+                                        route().current('workspaces.show', [workspaces.memberable.slug])
+                                            ? 'border-red-600 text-red-600'
+                                            : 'border-foreground text-foreground',
+                                            'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium uppercase'
+                                    )}>
+                                        {workspaces.memberable.name.substring(0, 1)}
                                     </span>
-                                    <span>{workspaces.name}</span>
+                                    <span>{workspaces.memberable.name}</span>
                                 </Link>
                             </li>
                         ))}
